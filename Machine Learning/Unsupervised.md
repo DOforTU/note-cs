@@ -1,4 +1,3 @@
-#MachineLearning
 
 [[Clustering]]
 [[Deep Learning]]

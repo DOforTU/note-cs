@@ -1,4 +1,3 @@
-#MachineLearning
 
 [[Classfication]]
 [[Regression]]

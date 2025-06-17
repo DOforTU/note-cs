@@ -1,4 +1,3 @@
-#MachineLearning
 
 [[Unsupervised]]
 [[Supervised]]
