@@ -16,7 +16,11 @@
 
 ## [자료구조 (Data Structure)](https://github.com/DOforTU/note-cs/blob/main/Data%20Structure/Data%20Structure.md)
 
-## 알고리즘 (Algorithm)
+> [[Data Structure]]
+
+## [알고리즘 (Algorithm)](https://github.com/DOforTU/note-cs/blob/main/Algorithm/Algorithm.md)
+
+> [[Algorithm]]
 
 ## AI (Artificial Intelligence)
 
