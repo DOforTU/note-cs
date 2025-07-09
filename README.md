@@ -14,7 +14,7 @@
 | **name**    | 원도현                                                                                                                  | 이주철                                                                                                                        |
 | **github**  | [@1Dohyeon](https://github.com/1Dohyeon)                                                                             | [@leejucheol](https://github.com/leejucheol)                                                                               |
 
-## 자료구조 (Data Structure)
+## [자료구조 (Data Structure)](https://github.com/DOforTU/note-cs/blob/main/Data%20Structure/Data%20Structure.md)
 
 ## 알고리즘 (Algorithm)
 
