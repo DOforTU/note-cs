@@ -19,7 +19,7 @@
 
 > [[data structure]]
 
-##  [algorithm](https://github.com/DOforTU/note-cs/blob/main/algorithm/agorithm.md) 알고리즘
+##  [algorithm](https://github.com/DOforTU/note-cs/blob/main/algorithm/algorithm.md) 알고리즘
 
 > [[algorithm]]
 
