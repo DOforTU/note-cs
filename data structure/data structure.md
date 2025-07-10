@@ -1,6 +1,6 @@
-## DataStructure(자료구조)
+# Data Structure 자료구조
 
-### [01. Array and List]()
+## [01. Array and List](https://github.com/DOforTU/note-cs/blob/main/data%20structure/01.%20Array%20and%20List.md)
 
 > [[01. Array and List]]
 
@@ -9,7 +9,7 @@
 - <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/01_Lists_with_py/03_DoublyLinkedList.py">Doubly Linked List</a>
 - <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/01_Lists_with_py/04_CircularLinkedList.py">Circular Linked List</a>
 
-### [02. Stack and Queue]()
+## [02. Stack and Queue](https://github.com/DOforTU/note-cs/blob/main/data%20structure/02.%20Stack%20and%20Queue.md)
 
 > [[02. Stack and Queue]]
 
@@ -18,21 +18,21 @@
 - <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/02_stack_and_queue_with_java/D3_ArrayQueue/ArrayQueue.java">Array Queue</a>
 - 2.2 <a href="https://github.com/1Dohyeon/Study-DataStructure/tree/master/02_stack_and_queue_with_java/D4_ListQueue">List Queue</a>
 
-### [03. Tree]()
+## [03. Tree](https://github.com/DOforTU/note-cs/blob/main/data%20structure/03.%20Tree.md)
 
-> [[03. Tree]]
+> [[public/github/note-cs/data structure/03. Tree]]
 
 - 3.1 <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/03_Tree_with_java/D1_BS_Tree/BST.java">Binary Search Tree</a>
 - 3.2 <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/03_Tree_with_java/D2_Union/UnionFind.java">Union</a>
 - 3.3 <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/03_Tree_with_java/D3_AVL/AVL.java">AVL Tree</a>
 
-### [04. Priority Queue]()
+## [04. Priority Queue](https://github.com/DOforTU/note-cs/blob/main/data%20structure/04.%20Priority%20Queue.md)
 
 > [[04. Priority Queue]]
 
 - 4.1 <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/04_PriorityQ_with_java/D1_PriorityQ/BHeap.java">Priority Queue > Heap</a>
 
-### [05. Hash]()
+## [05. Hash](https://github.com/DOforTU/note-cs/blob/main/data%20structure/05.%20Hash.md)
 
 > [[05. Hash]]
 
@@ -42,7 +42,7 @@
 - <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/05_Hash_with_java/D1_OpenAddressing/DoubleHashing.java">Open Addressing : Double Hashing</a>
 - <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/05_Hash_with_java/D2_ClosedAddressing/Chaining.java">Closed Addressing : Chaining</a>
 
-### [06. Sort]()]
+## [06. Sort](https://github.com/DOforTU/note-cs/blob/main/data%20structure/06.%20Sort.md)
 
 > [[06. Sort]]
 
@@ -53,7 +53,7 @@
 - 6.5 <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/06_sort_with_java/D1_Sort/Quick.java">Quick</a>
 - 6.6 <a href="https://github.com/1Dohyeon/Study-DataStructure/blob/master/06_sort_with_java/D1_Sort/Merge.java">Merge</a>
 
-### [07. Graph BFS-DFS]()
+## [07. Graph BFS-DFS](https://github.com/DOforTU/note-cs/blob/main/data%20structure/07.%20Graph%20BFS-DFS.md)
 
 > [[07. Graph BFS-DFS]]
 
