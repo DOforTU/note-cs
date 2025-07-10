@@ -19,9 +19,9 @@
 
 > [[data structure]]
 
-##  [algorithm](https://github.com/DOforTU/note-cs/blob/main/algorithm/Algorithm.md) 알고리즘
+##  [algorithm](https://github.com/DOforTU/note-cs/blob/main/algorithm/agorithm.md) 알고리즘
 
-> [[Algorithm]]
+> [[algorithm]]
 
 ## AI (Artificial Intelligence)
 
