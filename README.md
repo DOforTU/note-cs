@@ -14,11 +14,12 @@
 | **name**    | 원도현                                                                                                                  | 이주철                                                                                                                        |
 | **github**  | [@1Dohyeon](https://github.com/1Dohyeon)                                                                             | [@leejucheol](https://github.com/leejucheol)                                                                               |
 
-## [자료구조 (Data Structure)](https://github.com/DOforTU/note-cs/blob/main/Data%20Structure/Data%20Structure.md)
+---
+## [Data Structure](https://github.com/DOforTU/note-cs/blob/main/Data%20Structure/Data%20Structure.md) 자료구조
 
 > [[Data Structure]]
 
-## [알고리즘 (Algorithm)](https://github.com/DOforTU/note-cs/blob/main/Algorithm/Algorithm.md)
+## [Algorithm](https://github.com/DOforTU/note-cs/blob/main/Algorithm/Algorithm.md) 알고리즘
 
 > [[Algorithm]]
 
