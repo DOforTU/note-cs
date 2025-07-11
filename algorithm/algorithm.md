@@ -1,6 +1,6 @@
 # Algorithm 알고리즘
 
-## [01. Sort](https://github.com/DOforTU/note-cs/blob/main/algorithm/01.%20Sort.md)
+## [01. Sort](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/01.%20Sort.md)
 
 > [[01. Sort]]
 
@@ -8,14 +8,14 @@
 - 1.1 계수 정렬
 - 1.2 기수 정렬
 
-## [02. Selection](https://github.com/DOforTU/note-cs/blob/main/algorithm/02.%20Selection.md)
+## [02. Selection](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/02.%20Selection.md)
 
 > [[02. Selection]]
 
 - 2.1 퀵 정렬 방식을 이용한 선택 알고리즘
 - 2.2 중앙값의 중앙값을 이용한 선택 알고리즘
 
-## [03. Tree Algorithm](https://github.com/DOforTU/note-cs/blob/main/algorithm/03.%20Tree%20Algorithm.md)
+## [03. Tree Algorithm](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/03.%20Tree%20Algorithm.md)
 
 > [[03. Tree Algorithm]]
 
@@ -24,7 +24,7 @@
 - 3.2 B트리
 - 3.3 레드블랙트리
 
-## [04. Graph](https://github.com/DOforTU/note-cs/blob/main/algorithm/04.%20Graph.md)
+## [04. Graph](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/04.%20Graph.md)
 
 > [[04. Graph]]
 
@@ -44,14 +44,14 @@
 - 4.6강연결요소
 	- 4.6.1 StronglyConnectedComponent 알고리즘
 
-## [05. Dynamic Programming](https://github.com/DOforTU/note-cs/blob/main/algorithm/05.%20Dynamic%20Programming.md)
+## [05. Dynamic Programming](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/05.%20Dynamic%20Programming.md)
 
 > [[05. Dynamic Programming]]
 
 - 5.1 Dynamic Programming
 - 5.2 최장 공통 부분 순서(LCS) 알고리즘
 
-## [06. Greedy](https://github.com/DOforTU/note-cs/blob/main/algorithm/06.%20Greedy.md)
+## [06. Greedy](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/06.%20Greedy.md)
 
 > [[06. Greedy]]
 
@@ -59,7 +59,7 @@
 - 6.2 회의실 배정
 - 6.3 Huffman Code 알고리즘
 
-## [07. String Match](https://github.com/DOforTU/note-cs/blob/main/algorithm/07.%20String%20Match.md)
+## [07. String Match](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/07.%20String%20Match.md)
 
 > [[07. String Match]]
 

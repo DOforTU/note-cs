@@ -15,13 +15,17 @@
 | **github**  | [@1Dohyeon](https://github.com/1Dohyeon)                                                                             | [@leejucheol](https://github.com/leejucheol)                                                                               |
 
 ---
-## [data structure](https://github.com/DOforTU/note-cs/blob/main/data%20structure/data%20structure.md) 자료구조
+## [data structure](https://github.com/DOforTU/note-cs/blob/dohyeon/data%20structure/data%20structure.md) 자료구조
 
 > [[data structure]]
 
-##  [algorithm](https://github.com/DOforTU/note-cs/blob/main/algorithm/algorithm.md) 알고리즘
+##  [algorithm](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/algorithm.md) 알고리즘
 
 > [[algorithm]]
+
+##  [virtual machine](https://github.com/DOforTU/note-cs/blob/dohyeon/virtual%20machine/virtual%20machine.md)
+
+> [[virtual machine]]
 
 ## AI (Artificial Intelligence)
 
