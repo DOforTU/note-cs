@@ -50,9 +50,9 @@ TripWith과 D.P 프로젝트에서 Docker를 활용한 테스트 환경 배포�
 
 ## 2. 써로마인드 관련 질문
 
-- 써로마인드가 제공하는 AI 솔루션의 주요 특징은 무엇이라고 생각합니까?[](https://thevc.kr/surromind)[](https://www.saramin.co.kr/zf_user/company-info/view/csn/Y2NOcklpOHZ2NHJjZDVGNW01eFpoZz09/company_nm/\(%EC%A3%BC\)%EC%8D%A8%EB%A1%9C%EB%A7%88%EC%9D%B8%EB%93%9C)
+- 써로마인드가 제공하는 AI 솔루션의 주요 특징은 무엇이라고 생각합니까?
     
-- 인공지능 SW 전문 기업으로서 써로마인드가 최근 달성한 주요 성과나 수상 이력 중 인상 깊은 것이 있나요?[](https://www.saramin.co.kr/zf_user/company-info/view/csn/Y2NOcklpOHZ2NHJjZDVGNW01eFpoZz09/company_nm/\(%EC%A3%BC\)%EC%8D%A8%EB%A1%9C%EB%A7%88%EC%9D%B8%EB%93%9C)[](https://www.incruit.com/company/1685787667/)
+- 인공지능 SW 전문 기업으로서 써로마인드가 최근 달성한 주요 성과나 수상 이력 중 인상 깊은 것이 있나요?
     
 - 써로마인드에서 진행한 R&D(연구개발) 프로젝트 또는 MLOps 파이프라인 구축 경험이 있다면 구체적으로 설명해 주세요.
     
@@ -76,7 +76,7 @@ TripWith과 D.P 프로젝트에서 Docker를 활용한 테스트 환경 배포�
 
 ## 4. 도슨티 관련 질문
 
-- 도슨티가 제공하는 AI 챗봇/고객 소통 자동화 서비스의 핵심 가치는 무엇이라고 생각합니까?[](https://thevc.kr/docenty)[](https://seochojobmatching.oopy.io/1c490dcb-a5ae-8061-ab95-dbc1e1696d54)[](https://www.wanted.co.kr/company/46807)
+- 도슨티가 제공하는 AI 챗봇/고객 소통 자동화 서비스의 핵심 가치는 무엇이라고 생각합니까?
     
 - 도슨티의 ‘B2B SaaS to auto-generate custom AI chatbot’ 서비스에서 본인이 맡고 싶은 역할과 그 이유는 무엇입니까?
     
