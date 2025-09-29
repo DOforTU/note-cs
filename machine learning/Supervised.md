@@ -1,4 +1,0 @@
-
-[[Classfication]]
-[[Regression]]
-[[Deep Learning]]
