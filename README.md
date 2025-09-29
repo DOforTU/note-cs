@@ -24,3 +24,12 @@
 > - [[note-cs/machine learning/README|README]]
 ### [deep learning](https://github.com/DOforTU/note-cs/tree/dohyeon/deep%learning)
 > - [[note-cs/deep learning/README|README]]
+
+---
+## OutLink
+
+- data structure: [[note-cs/data structure/README|README]]
+- algorithm: [[note-cs/algorithm/README|README]]
+- data science: [[note-cs/data science/README|README]]
+- machine learning: [[note-cs/machine learning/README|README]]
+- deep learning: [[note-cs/deep learning/README|README]]
