@@ -18,7 +18,7 @@
 > outlink: [[note-cs/data structure/README|README]]
 ###  [algorithm](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/algorithm.md) 
 > outlink: [[note-cs/algorithm/README|README]]
-### [data science]([note-cs/algorithm at dohyeon · DOforTU/note-cs](https://github.com/DOforTU/note-cs/tree/dohyeon/data%20science))
+### [data science](https://github.com/DOforTU/note-cs/tree/dohyeon/data%20science)
 > outlink: [[note-cs/data science/README|README]]
 ### [machine learning](https://github.com/DOforTU/note-cs/tree/dohyeon/machine%learning)
 > outlink: [[note-cs/machine learning/README|README]]
