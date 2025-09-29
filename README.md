@@ -13,10 +13,12 @@
 | **github**  | [@1Dohyeon](https://github.com/1Dohyeon)                                                                             | [@leejucheol](https://github.com/leejucheol)                                                                               |
 
 ---
-## List
+## Contents
 ### [data structure](https://github.com/DOforTU/note-cs/blob/dohyeon/data%20structure/data%20structure.md) 
-###  [algorithm](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/algorithm.md) 
+### [algorithm](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/algorithm.md) 
 ### [data science](https://github.com/DOforTU/note-cs/tree/dohyeon/data%20science)
+
+### [statistical data analysis](https://github.com/DOforTU/note-cs/tree/dohyeon/statistical%data%20analysis)
 ### [machine learning](https://github.com/DOforTU/note-cs/tree/dohyeon/machine%learning)
 ### [deep learning](https://github.com/DOforTU/note-cs/tree/dohyeon/deep%learning)
 
@@ -26,5 +28,6 @@
 - data structure: [[note-cs/data structure/README|README]]
 - algorithm: [[note-cs/algorithm/README|README]]
 - data science: [[note-cs/data science/README|README]]
+- statistical data analysis: [[note-cs/statistical data analysis/README|README]]
 - machine learning: [[note-cs/machine learning/README|README]]
 - deep learning: [[note-cs/deep learning/README|README]]
