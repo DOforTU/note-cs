@@ -13,16 +13,6 @@
 | **github**  | [@1Dohyeon](https://github.com/1Dohyeon)                                                                             | [@leejucheol](https://github.com/leejucheol)                                                                               |
 
 ---
-## [data structure](https://github.com/DOforTU/note-cs/blob/main/data%20structure/data%20structure.md) 자료구조
 
-> [[data structure]]
-
-##  [algorithm](https://github.com/DOforTU/note-cs/blob/main/algorithm/algorithm.md) 알고리즘
-
-> [[algorithm]]
-
-## AI (Artificial Intelligence)
-
-## 머신러닝 (Machine Learning)
-
-## 딥러닝 (Deep Learning)
+>>> [dohyeon](https://github.com/DOforTU/note-cs/tree/dohyeon)
+>>> [jucheol](https://github.com/DOforTU/note-cs/tree/jucheol)
