@@ -15,15 +15,10 @@
 ---
 ## List
 ### [data structure](https://github.com/DOforTU/note-cs/blob/dohyeon/data%20structure/data%20structure.md) 
-> - [[note-cs/data structure/README|README]]
 ###  [algorithm](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/algorithm.md) 
-> - [[note-cs/algorithm/README|README]]
 ### [data science](https://github.com/DOforTU/note-cs/tree/dohyeon/data%20science)
-> - [[note-cs/data science/README|README]]
 ### [machine learning](https://github.com/DOforTU/note-cs/tree/dohyeon/machine%learning)
-> - [[note-cs/machine learning/README|README]]
 ### [deep learning](https://github.com/DOforTU/note-cs/tree/dohyeon/deep%learning)
-> - [[note-cs/deep learning/README|README]]
 
 ---
 ## OutLink
