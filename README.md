@@ -14,5 +14,6 @@
 
 ---
 
->>> [dohyeon](https://github.com/DOforTU/note-cs/tree/dohyeon)
->>> [jucheol](https://github.com/DOforTU/note-cs/tree/jucheol)
+> [dohyeon](https://github.com/DOforTU/note-cs/tree/dohyeon)
+
+> [jucheol](https://github.com/DOforTU/note-cs/tree/jucheol)
