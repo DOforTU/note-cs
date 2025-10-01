@@ -1,5 +1,7 @@
 # folder
 _dump
+dump
 
 # files
 *.canvas
+.NLN_LINK.txt
