@@ -18,7 +18,7 @@
 ### [algorithm](https://github.com/DOforTU/note-cs/blob/dohyeon/algorithm/algorithm.md) 
 ### [data science](https://github.com/DOforTU/note-cs/tree/dohyeon/data%20science)
 
-### [statistical data analysis](https://github.com/DOforTU/note-cs/tree/dohyeon/statistical%data%20analysis)
+### [statistical data analysis](https://github.com/DOforTU/note-cs/tree/dohyeon/statistical%20data%20analysis)
 ### [machine learning](https://github.com/DOforTU/note-cs/tree/dohyeon/machine%learning)
 ### [deep learning](https://github.com/DOforTU/note-cs/tree/dohyeon/deep%learning)
 
