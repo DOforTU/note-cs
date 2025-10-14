@@ -8,6 +8,6 @@
 ---
 ## OutLink
 
-- [[1. Deep Neural Networks]]
+- [[note-cs/data science/1. Deep Neural Networks]]
 - [[2. PyTorch]]
 - [google](https://google.com)
