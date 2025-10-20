@@ -59,7 +59,7 @@ MSE의 미분은 간단합니다:
 
 $$\frac{\partial L}{\partial \hat{y}_i} = \frac{2}{N}(\hat{y}_i - y_i)$$
 
-[[Chain Rule]]을 통해 모델 파라미터의 gradient를 계산할 수 있습니다.
+[[Chain rule]]을 통해 모델 파라미터의 gradient를 계산할 수 있습니다.
 
 선형 모델 $\hat{y} = wx + b$에서:
 

@@ -310,5 +310,5 @@ with torch.no_grad():
 
 **다음 단계:**
 
-- [[Chain Rule]] - 역전파의 수학적 기초
+- [[Chain rule]] - 역전파의 수학적 기초
 - [[Optimizer(Data Science)]] - SGD, Adam 등 파라미터 업데이트 알고리즘

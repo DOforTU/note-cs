@@ -4,7 +4,7 @@
 
 **Autograd(Automatic Differentiation)** 는 PyTorch의 자동 미분 시스템입니다. 개발자가 직접 [[Gradient]]를 계산하는 코드를 작성할 필요 없이, [[Forward Pass]]에서 수행된 모든 연산을 자동으로 추적하여 [[Backpropagation]] 시 gradient를 자동으로 계산합니다.
 
-Autograd는 **계산 그래프(computational graph)**를 동적으로 구성하고, [[Chain Rule]]을 자동으로 적용하여 모든 파라미터의 gradient를 효율적으로 계산합니다.
+Autograd는 **계산 그래프(computational graph)**를 동적으로 구성하고, [[Chain rule]]을 자동으로 적용하여 모든 파라미터의 gradient를 효율적으로 계산합니다.
 
 ---
 
@@ -483,7 +483,7 @@ y = x * 3
 1. 손실의 `grad_fn`부터 시작
 2. 재귀적으로 이전 연산들을 방문
 3. 각 연산의 `backward()` 메서드 호출
-4. [[Chain Rule]] 적용하여 gradient 계산
+4. [[Chain rule]] 적용하여 gradient 계산
 5. 입력 텐서의 `.grad`에 누적
 
 **순서:**
@@ -627,7 +627,7 @@ PyTorch보다 더 함수형이고 컴파일 최적화가 강력하지만, 학습
 - Autograd는 PyTorch의 자동 미분 시스템
 - Forward pass 중에 동적으로 계산 그래프 구성
 - `loss.backward()`로 모든 gradient 자동 계산
-- [[Chain Rule]]을 자동으로 적용
+- [[Chain rule]]을 자동으로 적용
 - Gradient는 누적되므로 매 iteration마다 초기화 필요
 - `torch.no_grad()`로 gradient 계산 비활성화
 - 동적 그래프로 조건문, 반복문 자유롭게 사용 가능
@@ -642,7 +642,7 @@ PyTorch보다 더 함수형이고 컴파일 최적화가 강력하지만, 학습
 - [[Gradient]] - Gradient의 의미
 - [[Forward Pass]] - 순전파
 - [[Backpropagation]] - 역전파
-- [[Chain Rule]] - 연쇄 법칙
+- [[Chain rule]] - 연쇄 법칙
 
 **관련 개념:**
 

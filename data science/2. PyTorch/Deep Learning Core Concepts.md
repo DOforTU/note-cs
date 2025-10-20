@@ -84,7 +84,7 @@ x → 층1(w1, b1) → 층2(w2, b2) → 층3(w3, b3) → y → Loss
 
 ### 핵심 아이디어: Chain Rule
 
-[[Chain Rule]](연쇄 법칙)은 합성 함수의 미분을 계산하는 미적분 규칙입니다.
+[[Chain rule]](연쇄 법칙)은 합성 함수의 미분을 계산하는 미적분 규칙입니다.
 
 **간단한 예:** $y = f(g(x))$라면: $$\frac{dy}{dx} = \frac{dy}{dg} \times \frac{dg}{dx}$$
 
@@ -122,7 +122,7 @@ $$\frac{\partial L}{\partial w_1} = \frac{\partial L}{\partial y} \times \frac{\
 
 ## Chain Rule (연쇄 법칙)
 
-[[Chain Rule]]은 역전파의 수학적 기초입니다. 복잡하게 연결된 함수의 미분을 간단한 부분들의 곱으로 계산할 수 있게 해줍니다.
+[[Chain rule]]은 역전파의 수학적 기초입니다. 복잡하게 연결된 함수의 미분을 간단한 부분들의 곱으로 계산할 수 있게 해줍니다.
 
 ### 직관적 이해
 
@@ -166,7 +166,7 @@ Chain rule 덕분에:
 x → [×w] → [+b] → [ReLU] → h → [×w2] → y → [Loss]
 ```
 
-각 연산은 노드가 되고, 데이터 흐름은 엣지가 됩니다. Backward pass에서는 이 그래프를 거꾸로 따라가며 [[Chain Rule]]을 자동으로 적용하여 gradient를 계산합니다.
+각 연산은 노드가 되고, 데이터 흐름은 엣지가 됩니다. Backward pass에서는 이 그래프를 거꾸로 따라가며 [[Chain rule]]을 자동으로 적용하여 gradient를 계산합니다.
 
 PyTorch의 [[Autograd]] 시스템이 바로 이 원리로 작동합니다. 사용자가 `loss.backward()`를 호출하면, 계산 그래프를 따라 자동으로 모든 파라미터의 gradient를 계산합니다.
 
@@ -239,10 +239,10 @@ w = w - learning_rate * w.grad
 딥러닝 핵심 개념을 학습하는 권장 순서는 다음과 같습니다:
 
 1. [[Forward Pass]] - 데이터가 신경망을 통과하는 과정
-2. [[Chain Rule]] - 역전파의 수학적 기초
+2. [[Chain rule]] - 역전파의 수학적 기초
 3. [[Backpropagation]] - Gradient를 효율적으로 계산하는 알고리즘
 
-각 개념은 서로 의존적입니다. [[Forward Pass]]로 예측값을 계산하고, [[Chain Rule]]을 이용해 gradient를 구하며, [[Backpropagation]]으로 이를 효율적으로 실행합니다.
+각 개념은 서로 의존적입니다. [[Forward Pass]]로 예측값을 계산하고, [[Chain rule]]을 이용해 gradient를 구하며, [[Backpropagation]]으로 이를 효율적으로 실행합니다.
 
 PyTorch를 사용한다면 [[Autograd]] 시스템이 이 모든 것을 자동으로 처리하지만, 내부 원리를 이해하는 것은 디버깅과 모델 설계에 큰 도움이 됩니다.
 
@@ -253,7 +253,7 @@ PyTorch를 사용한다면 [[Autograd]] 시스템이 이 모든 것을 자동으
 - 딥러닝은 여러 층을 쌓아 복잡한 패턴을 학습
 - [[Forward Pass]]로 예측값 계산
 - [[Backpropagation]]으로 모든 파라미터의 gradient 계산
-- [[Chain Rule]]이 역전파의 수학적 기초
+- [[Chain rule]]이 역전파의 수학적 기초
 - 자동 미분 시스템이 이 모든 과정을 자동화
 - 층을 쌓을수록 더 추상적인 특징을 학습 가능
 
@@ -269,7 +269,7 @@ PyTorch를 사용한다면 [[Autograd]] 시스템이 이 모든 것을 자동으
 
 - [[Forward Pass]] - 순전파
 - [[Backpropagation]] - 역전파
-- [[Chain Rule]] - 연쇄 법칙
+- [[Chain rule]] - 연쇄 법칙
 - [[Autograd]] - PyTorch의 자동 미분 (선택적)
 
 **다음 단계:**

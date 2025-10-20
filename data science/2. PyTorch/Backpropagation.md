@@ -35,7 +35,7 @@ $$\frac{\partial L}{\partial w_1}, \frac{\partial L}{\partial w_2}, \frac{\parti
 
 ## 기본 아이디어
 
-역전파의 핵심 아이디어는 [[Chain Rule]](연쇄 법칙)을 체계적으로 적용하는 것입니다.
+역전파의 핵심 아이디어는 [[Chain rule]](연쇄 법칙)을 체계적으로 적용하는 것입니다.
 
 배달 경로를 최적화하는 상황을 생각해봅시다. 100개의 집에 각각 개별적으로 배달하러 가는 대신, 한 번의 최적 경로로 모든 집을 방문하는 것이 효율적입니다. 역전파도 마찬가지입니다. 각 파라미터의 gradient를 따로따로 계산하는 대신, 한 번의 역방향 pass로 모든 gradient를 수집합니다.
 
@@ -47,7 +47,7 @@ $$\frac{\partial L}{\partial w_1}, \frac{\partial L}{\partial w_2}, \frac{\parti
 **Backward pass 중:**
 
 - 손실에서 시작하여 한 층씩 거슬러 올라감
-- [[Chain Rule]]을 적용하여 각 층의 gradient 계산
+- [[Chain rule]]을 적용하여 각 층의 gradient 계산
 - 이전 층의 gradient 계산에 현재 층의 gradient 재사용
 
 ---
@@ -175,7 +175,7 @@ b1 -= learning_rate * db1
 
 ## Chain Rule의 적용
 
-역전파가 작동하는 이유는 [[Chain Rule]] 덕분입니다. 여러 함수가 합성된 경우, 전체 미분은 각 부분의 미분을 곱한 것입니다.
+역전파가 작동하는 이유는 [[Chain rule]] 덕분입니다. 여러 함수가 합성된 경우, 전체 미분은 각 부분의 미분을 곱한 것입니다.
 
 신경망에서: $$x \rightarrow f_1 \rightarrow f_2 \rightarrow f_3 \rightarrow L$$
 
@@ -256,7 +256,7 @@ PyTorch는 이를 자동으로 처리하므로, 단일 샘플이든 배치든 �
 
 ### Gradient 소실 (Vanishing Gradient)
 
-깊은 신경망에서 [[Chain Rule]]에 의해 여러 gradient가 곱해지면서 값이 점점 작아질 수 있습니다:
+깊은 신경망에서 [[Chain rule]]에 의해 여러 gradient가 곱해지면서 값이 점점 작아질 수 있습니다:
 
 $$\frac{\partial L}{\partial w_1} = \frac{\partial L}{\partial h_n} \times \frac{\partial h_n}{\partial h_{n-1}} \times \cdots \times \frac{\partial h_2}{\partial h_1} \times \frac{\partial h_1}{\partial w_1}$$
 
@@ -332,7 +332,7 @@ for name, param in model.named_parameters():
 `loss.backward()`를 호출하면:
 
 1. 계산 그래프를 거꾸로 순회
-2. [[Chain Rule]]을 자동으로 적용
+2. [[Chain rule]]을 자동으로 적용
 3. 모든 파라미터의 `.grad`에 gradient 저장
 
 개발자는 역전파의 수학적 세부사항을 신경 쓸 필요 없이, 모델 구조만 정의하면 됩니다. 하지만 내부 원리를 이해하면 디버깅과 최적화에 큰 도움이 됩니다.
@@ -362,7 +362,7 @@ for name, param in model.named_parameters():
 ## 핵심 요약
 
 - 역전파는 신경망의 모든 파라미터에 대한 gradient를 효율적으로 계산
-- [[Chain Rule]]을 체계적으로 적용하여 한 번의 pass로 모든 gradient 계산
+- [[Chain rule]]을 체계적으로 적용하여 한 번의 pass로 모든 gradient 계산
 - Forward pass에서 중간 결과 저장, backward pass에서 gradient 계산
 - 계산 그래프를 거꾸로 순회하며 각 노드에서 gradient 전파
 - Gradient 소실/폭발 문제 주의 필요
@@ -380,7 +380,7 @@ for name, param in model.named_parameters():
 
 **핵심 개념:**
 
-- [[Chain Rule]] - 역전파의 수학적 기초
+- [[Chain rule]] - 역전파의 수학적 기초
 - [[Deep Learning Core Concepts]] - 딥러닝 전체 구조
 
 **다음 단계:**

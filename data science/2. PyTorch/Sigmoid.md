@@ -101,7 +101,7 @@ Sigmoid의 가장 큰 문제점입니다.
 - $\sigma'(-5) \approx 0.007$
 - $\sigma'(5) \approx 0.007$
 
-깊은 신경망에서 [[Chain Rule]]로 여러 층의 gradient를 곱하면:
+깊은 신경망에서 [[Chain rule]]로 여러 층의 gradient를 곱하면:
 
 $$\frac{\partial L}{\partial w_1} = \frac{\partial L}{\partial a_n} \cdot \sigma'(z_n) \cdot \cdots \cdot \sigma'(z_1) \cdot x$$
 

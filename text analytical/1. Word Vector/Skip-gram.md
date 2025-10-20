@@ -54,25 +54,38 @@ imdb_dataset = load_dataset("stanfordnlp/imdb")
 
 이렇게 로드된 데이터셋은 train, test 분할이 이미 되어 있으며, 각 샘플은 영화 리뷰 텍스트를 포함하고 있습니다. Skip-gram 학습을 위해서는 이러한 텍스트 문서들의 집합(corpus)이 필요합니다.
 
-### 2.2 Word2Vec 목적 함수 (Negative Sampling)
+### 2.2 Word2Vec 목적 함수 ([[Negative Sampling]])
 
-Negative Sampling을 사용한 Skip-gram의 목적 함수는 전체 코퍼스에서 실제로 함께 등장하는 단어 쌍들의 확률을 최대화하는 것을 목표로 합니다. 수학적으로는 다음과 같이 표현됩니다.
+### 2.2.1 손실 함수
 
-$$J(\theta) = \frac{1}{T}\sum_{t=1}^{T} \sum_{\substack{-m\leq j\leq m \ j\neq 0}} J_{neg-sample}(\boldsymbol{u}_t, \boldsymbol{v}_t, U)$$
+[[Negative Sampling]]을 사용한 Skip-gram의 목적은 전체 코퍼스에서 실제로 함께 등장하는 단어 쌍들의 확률을 최대화하는 것입니다. 이는 수학적으로 **손실 함수(loss function)를 최소화하는 문제**로 변환됩니다.
 
-여기서 T는 전체 텍스트의 길이, m은 윈도우 크기를 의미합니다. 각 위치 t에서 중심 단어와 그 주변 문맥 단어들에 대해 손실을 계산하고, 이를 모두 평균내어 전체 목적 함수를 구성합니다.
+확률을 최대화하는 것과 음의 로그 확률을 최소화하는 것은 수학적으로 동치이며($\max P \equiv \min (-\log P)$), 실제 구현에서는 경사 하강법(Gradient Descent)을 사용한 최소화 방식으로 진행됩니다.
 
-핵심이 되는 $J_{neg-sample}$은 다음과 같이 정의됩니다.
+전체 코퍼스에 대한 손실 함수는 다음과 같이 정의됩니다:
+
+$$J(\theta) = \frac{1}{T}\sum_{t=1}^{T} \sum_{\substack{-m\leq j\leq m \ j\neq 0}} J_{neg-sample}(\boldsymbol{u}_{t+j}, \boldsymbol{v}_t, U)$$
+
+여기서 T는 전체 텍스트의 길이, m은 윈도우 크기를 의미합니다. 각 위치 t에서 중심 단어와 그 주변 문맥 단어들에 대해 손실을 계산하고, 이를 모두 평균내어 전체 목적 함수를 구성합니다. **학습의 목표는 이 $J(\theta)$를 최소화하는 것**이며, 손실이 작아질수록 모델은 실제 단어 쌍과 무작위 단어 쌍을 더 잘 구별하게 됩니다.
+
+핵심이 되는 각 윈도우에 대한 손실 $J_{neg-sample}$은 다음과 같이 정의됩니다:
 
 $$J_{neg-sample}(\boldsymbol{u}_o, \boldsymbol{v}_c, U) = -\log\sigma(\boldsymbol{u}_o^T\boldsymbol{v}_c) - \sum_{k\in{K \text{ sampled indices}}} \log\sigma(-\boldsymbol{u}_k^T\boldsymbol{v}_c)$$
 
-이 식은 두 개의 항으로 구성됩니다. 첫 번째 항 $-\log\sigma(\boldsymbol{u}_o^T\boldsymbol{v}_c)$는 실제 문맥 단어 o에 대한 손실입니다. 여기서 $\sigma$는 시그모이드 함수(sigmoid function)로, 다음과 같이 정의됩니다.
+이 식에서 $\sigma$는 시그모이드 함수(sigmoid function)로, 다음과 같이 정의됩니다:
 
 $$\sigma(x) = \frac{1}{1 + e^{-x}}$$
 
-시그모이드 함수는 임의의 실수 값을 0과 1 사이의 값으로 매핑하여 이진 확률로 해석할 수 있게 합니다. $\boldsymbol{u}_o^T\boldsymbol{v}_c$가 클수록, 즉 두 벡터가 유사할수록 $\sigma(\boldsymbol{u}_o^T\boldsymbol{v}_c)$는 1에 가까워지고 $-\log$ 값은 0에 가까워집니다. 따라서 실제로 함께 등장하는 단어 쌍의 벡터들이 유사해지도록 만듭니다.
+시그모이드 함수는 임의의 실수 값을 0과 1 사이의 값으로 매핑하여 이진 확률로 해석할 수 있게 합니다. 시그모이드의 출력은 항상 1 이하이므로($\sigma(x) \leq 1$), $\log\sigma(x)$는 항상 0 이하의 값을 가집니다. 따라서 손실이 항상 양수 또는 0이 되도록 앞에 음수 부호(-)를 붙입니다. **이 손실 함수의 최솟값은 0입니다.**
 
-두 번째 항 $-\sum_{k} \log\sigma(-\boldsymbol{u}_k^T\boldsymbol{v}_c)$는 k개의 부정 샘플에 대한 손실입니다. 음수 부호에 주목해야 합니다. $\boldsymbol{u}_k^T\boldsymbol{v}_c$가 작을수록, 즉 무관한 단어일수록 $-\boldsymbol{u}_k^T\boldsymbol{v}_c$는 커지고 $\sigma(-\boldsymbol{u}_k^T\boldsymbol{v}_c)$는 1에 가까워져 $-\log$ 값이 0에 가깝습니다. 이는 무작위로 선택된 단어 쌍의 벡터들이 서로 다르도록 만듭니다.
+손실 함수는 두 개의 항으로 구성됩니다.
+
+**첫 번째 항** $-\log\sigma(\boldsymbol{u}_o^T\boldsymbol{v}_c)$는 실제 문맥 단어 o에 대한 손실입니다. 이 항을 0에 가깝게 만들려면, $\log$ 안의 시그모이드 값이 1에 가까워야 하고, 이는 내적 $\boldsymbol{u}_o^T\boldsymbol{v}_c$가 커야 함을 의미합니다. 따라서 실제로 함께 등장하는 단어 쌍의 벡터들이 가까워지도록 학습됩니다.
+
+**두 번째 항** $-\sum_{k} \log\sigma(-\boldsymbol{u}_k^T\boldsymbol{v}_c)$는 k개의 부정 샘플에 대한 손실입니다. 시그모이드 안에 음수 부호가 있다는 점에 주목해야 합니다. 이 항을 0에 가깝게 만들려면, $\sigma(-\boldsymbol{u}_k^T\boldsymbol{v}_c)$가 1에 가까워야 하고, 이는 $-\boldsymbol{u}_k^T\boldsymbol{v}_c$가 커야 함을, 즉 원래 내적 $\boldsymbol{u}_k^T\boldsymbol{v}_c$가 작아야(음수이거나 0에 가까워야) 함을 의미합니다. 따라서 무작위로 선택된 단어 쌍의 벡터들이 멀어지도록 학습됩니다.
+
+결과적으로 이 손실 함수를 최소화하면, 문맥상 함께 나타나는 단어 쌍(true pair)의 벡터는 가까워지고(내적이 큼), 무작위로 선택된 단어 쌍(noise pair)의 벡터는 멀어지게(내적이 작음) 됩니다.
+### 2.2.2 Skip-gram: Unigram
 
 부정 샘플을 선택하는 방법도 중요합니다. 단순히 균등 분포를 사용하면 빈번한 단어들(the, a, is 등)이 너무 자주 선택되고 희소한 단어는 거의 선택되지 않습니다. Word2vec에서는 **유니그램 분포의 3/4 제곱**을 사용합니다.
 
@@ -112,6 +125,8 @@ def read_corpus() -> List[str]:
 imdb_corpus = read_corpus()
 print(f"#(documents): {len(imdb_corpus)}")
 print("The number of tokens in the 1st document:", len(imdb_corpus[0]))
+
+# 첫 번째 문서의 내용 중 처음 20개의 단어(토큰)
 print(f"imdb_corpus[0][:20] = {imdb_corpus[0][:20]}")
 ```
 
@@ -124,7 +139,7 @@ print(f"imdb_corpus[0][:20] = {imdb_corpus[0][:20]}")
 ```python
 def build_vocab(corpus: List[List[str]]):
     tokens: List[str] = [tok for doc in corpus for tok in doc]
-    vocab = set(tokens)
+    vocab = set(tokens) # 중복 제거
     
     word2idx = {w: i for i, w in enumerate(vocab)}
     idx2word = {i: w for w, i in word2idx.items()}
@@ -160,9 +175,12 @@ def build_skipgram_pairs_docs(indexed_docs: List[List[int]], window_size: int) -
     pairs = []
     for doc in indexed_docs:
         for i, center in enumerate(doc):
-            start = max(0, i - window_size)
+	        # 음수가 될 수도 있으니 max
+            start = max(0, i - window_size) 
+            # len보다 커질 수 있으니 min
             end = min(len(doc), i + window_size + 1)
-            for j in range(start, end):
+            # end = min(len(doc) - 1, i + window_size)
+            for j in range(start, end): # range(start, end + 1)
                 if i != j:
                     context = doc[j]
                     pairs.append((center, context))
@@ -178,7 +196,7 @@ def build_skipgram_pairs_docs(indexed_docs: List[List[int]], window_size: int) -
 - (into, banking)
 - (into, crises)
 
-이렇게 4개의 쌍이 생성됩니다. 윈도우가 문서의 경계를 넘어가지 않도록 `max`와 `min` 함수로 범위를 조정합니다. 또한 `i != j` 조건으로 중심 단어 자기 자신은 문맥에서 제외합니다.
+이렇게 4개의 쌍이 생성됩니다. 윈도우가 문서의 경계를 넘어가지 않도록 `max`와 `min` 함수로 범위를 조정합니다. 또한 `i != j` 조건으로 중심 단어 자기 자신은 문맥에서 제외합니다. 위 예시에서는 (into, into)가 되지 않도록 하는 예외처리 입니다.
 
 ```python
 pairs = build_skipgram_pairs_docs(indexed_docs, WINDOW_SIZE)
@@ -194,10 +212,18 @@ Negative Sampling을 위해서는 부정 샘플을 선택할 확률 분포가 �
 ```python
 def make_unigram_probs(indexed_docs: List[List[int]], vocab_size: int, power: float = 0.75) -> np.ndarray:
     """단어 인덱스 리스트에서 확률 분포 계산 (f^0.75 정규화)"""
+    # 어휘 크기(vocab_size)만큼의 길이를 가진 0 배열을 생성
     freqs = np.zeros(vocab_size, dtype=np.float64)
     for doc in indexed_docs:
+	    # 전체 코퍼스를 구성하는 각 문서(단어 인덱스 리스트)를 순회
         for idx in doc:
+	        # 현재 문서 내의 모든 단어 인덱스(idx)를 순회
             freqs[idx] += 1
+            # 해당 단어 인덱스(idx)가 나타날 때마다 
+            # 빈도수 배열(freqs)의 해당 위치 값을 1 증가.
+			# 이 루프가 끝나면 freqs 배열에는 
+			# 코퍼스 전체의 단어 빈도수가 담김.
+            
     probs = freqs ** power
     probs /= probs.sum()
     return probs
@@ -215,6 +241,199 @@ probs = make_unigram_probs(indexed_docs, vocab_size)
 
 ### 2.4 데이터 로더 및 모델
 
+학습 데이터가 준비되었다면, 이제 PyTorch의 Dataset과 Model을 구현해야 합니다. Dataset 클래스는 데이터를 효율적으로 배치 단위로 제공하고, Model 클래스는 실제 Skip-gram의 forward pass를 정의합니다.
+
 #### 2.4.1 SkipGramDataset 클래스
 
+PyTorch의 `Dataset` 클래스를 상속받아 Skip-gram에 특화된 데이터셋을 구현합니다. 이 클래스는 각 학습 샘플에 대해 중심 단어, 실제 문맥 단어(positive sample), 그리고 여러 개의 부정 샘플(negative samples)을 함께 반환합니다.
+
+```python
+class SkipGramDataset(Dataset):
+    def __init__(self, pairs: List[Tuple[int, int]], probs: np.ndarray, vocab_size: int, k: int):
+        self.pairs = pairs
+        self.probs = probs
+        self.vocab_size = vocab_size
+        self.k = k
+    
+    def __len__(self):
+        return len(self.pairs)
+    
+    def __getitem__(self, idx):
+        center, pos = self.pairs[idx]
+        negs = np.random.choice(self.vocab_size, size=self.k, replace=True, p=self.probs)
+        return (
+            torch.tensor(center),
+            torch.tensor(pos),
+            torch.tensor(negs),
+        )
+```
+
+생성자 `__init__`는 네 가지 매개변수를 받습니다. `pairs`는 앞서 생성한 (중심 단어, 문맥 단어) 쌍의 리스트이고, `probs`는 유니그램 분포입니다. `vocab_size`는 전체 어휘 크기, `k`는 각 positive sample당 생성할 negative sample의 개수입니다.
+
+`__len__` 메서드는 전체 데이터셋의 크기를 반환합니다. 이는 학습 쌍의 개수와 동일합니다.
+
+`__getitem__` 메서드는 특정 인덱스의 데이터를 반환하는 핵심 함수입니다. 먼저 `self.pairs[idx]`에서 중심 단어와 positive 문맥 단어를 가져옵니다. 그다음 `np.random.choice`를 사용하여 k개의 부정 샘플을 샘플링합니다. 여기서 중요한 것은 `p=self.probs` 매개변수로, 이를 통해 유니그램 분포에 따라 샘플링이 이루어집니다. `replace=True`는 중복을 허용한다는 의미로, 같은 단어가 여러 번 선택될 수 있습니다.
+
+최종적으로 세 개의 텐서를 튜플로 묶어 반환합니다: 중심 단어 인덱스, positive 단어 인덱스, 그리고 k개의 negative 단어 인덱스들입니다.
+
+```python
+dataset = SkipGramDataset(pairs, probs, vocab_size, NEGATIVE_SAMPLES)
+print(f"The first example: {dataset[0]}")
+```
+
+데이터셋의 첫 번째 샘플을 출력하면, 예를 들어 `(tensor(42), tensor(123), tensor([567, 89, 234, 456, 12]))`와 같은 형태가 나옵니다. 이는 인덱스 42번 단어가 중심 단어이고, 123번 단어가 실제 문맥 단어이며, 5개의 부정 샘플이 무작위로 선택되었음을 의미합니다.
+
 #### 2.4.2 SkipGramNS 모델 (nn.Module)
+
+Skip-gram 모델 자체는 `nn.Module`을 상속받아 구현합니다. 이 모델은 두 개의 임베딩 레이어를 가지며, 하나는 중심 단어용, 다른 하나는 문맥 단어용입니다.
+
+```python
+class SkipGramNS(nn.Module):
+    def __init__(self, vocab_size: int, embed_dim: int):
+        super().__init__()
+        self.in_embed = nn.Embedding(vocab_size, embed_dim)
+        self.out_embed = nn.Embedding(vocab_size, embed_dim)
+        nn.init.uniform_(self.in_embed.weight, a=-0.5/embed_dim, b=0.5/embed_dim)
+        nn.init.uniform_(self.out_embed.weight, a=-0.5/embed_dim, b=0.5/embed_dim)
+```
+
+생성자에서는 두 개의 임베딩 레이어를 초기화합니다. `self.in_embed`는 중심 단어가 입력으로 들어올 때 사용되는 임베딩으로, 최종적으로 우리가 얻고자 하는 단어 벡터입니다. `self.out_embed`는 문맥 단어(positive 또는 negative)를 처리할 때 사용되는 임베딩입니다.
+
+임베딩 가중치의 초기화도 중요합니다. `nn.init.uniform_`을 사용하여 각 임베딩을 $[-0.5/d, 0.5/d]$ 범위의 균등 분포로 초기화합니다. 여기서 $d$는 `embed_dim`입니다. 이러한 작은 값으로 초기화하면 학습 초기에 안정적인 경사를 얻을 수 있습니다.
+
+```python
+def forward(self, center: torch.Tensor, pos: torch.Tensor, negs: torch.Tensor):
+    center_embed = self.in_embed(center)  # (batch, embed_dim)
+    pos_embed = self.out_embed(pos)       # (batch, embed_dim)
+    negs_embed = self.out_embed(negs)     # (batch, k, embed_dim)
+    
+    pos_score = torch.sum(center_embed * pos_embed, dim=1)  # (batch,)
+    # Batch Matrix Multiplication
+    # 부정 샘플(negs)에 대한 점수(Score) 계산:
+	# 중심 단어 임베딩(center_embed)과 배치 내 모든 부정 샘플 임베딩(negs_embed) 간의
+	# 내적(유사도)을 배치 행렬 곱셈(BMM)을 사용하여 효율적으로 계산
+    negs_score = torch.bmm(
+	    negs_embed, center_embed.unsqueeze(2)).squeeze(2)  # (batch, k)
+    
+    pos_loss = -torch.log(torch.sigmoid(pos_score))
+    negs_loss = -torch.log(torch.sigmoid(-negs_score))
+    
+    loss = torch.mean(pos_loss + torch.sum(negs_loss, dim=1))
+    return loss
+```
+
+`forward` 메서드는 모델의 순전파를 정의합니다. 입력으로 중심 단어 인덱스 `center`, positive 단어 인덱스 `pos`, 그리고 negative 단어 인덱스들 `negs`를 받습니다.
+
+먼저 각 인덱스를 임베딩 벡터로 변환합니다. `center_embed`는 중심 단어의 벡터 표현이고, `pos_embed`는 positive 문맥 단어의 벡터 표현입니다. `negs_embed`는 k개의 negative 샘플들의 벡터 표현으로, 3차원 텐서가 됩니다.
+
+다음으로 스코어를 계산합니다. `pos_score`는 중심 단어와 positive 단어의 내적입니다. 요소별 곱셈(`*`)을 수행한 후 차원 1을 따라 합하면 내적이 됩니다. `negs_score`는 중심 단어와 각 negative 단어의 내적들입니다. `torch.bmm`(batch matrix multiplication)을 사용하여 배치 단위로 행렬 곱셈을 수행합니다.
+
+손실 계산은 목적 함수의 정의를 그대로 따릅니다. `pos_loss`는 $-\log\sigma(u_o^T v_c)$에 해당하며, positive 단어의 확률을 최대화하도록 만듭니다. `negs_loss`는 $-\log\sigma(-u_k^T v_c)$에 해당하며, negative 단어들의 확률을 최소화하도록 만듭니다. 시그모이드 함수 안의 음수 부호에 주의해야 합니다.
+
+최종 손실은 positive 손실과 모든 negative 손실의 합을 배치 전체에 대해 평균낸 값입니다. 이 손실을 최소화하는 방향으로 경사 하강법을 적용하면, 중심 단어와 실제 문맥 단어의 벡터는 가까워지고, 중심 단어와 무작위 단어의 벡터는 멀어지게 됩니다.
+
+이렇게 구현된 모델은 표준적인 PyTorch 학습 루프에서 사용할 수 있습니다. DataLoader로 배치를 생성하고, optimizer로 매개변수를 업데이트하면서 여러 에폭 동안 학습을 진행합니다.
+
+### 2.5 학습 루프
+
+모든 준비가 완료되었다면 실제로 모델을 학습시키는 단계입니다. PyTorch의 표준적인 학습 루프를 사용하여 여러 에폭 동안 데이터를 반복적으로 학습합니다.
+
+```python
+def train():
+    # 하이퍼파라미터 설정
+    EMBED_DIM = 100
+    BATCH_SIZE = 512
+    LEARNING_RATE = 0.001
+    NUM_EPOCHS = 5
+    
+    # 모델 초기화
+    model = SkipGramNS(vocab_size, EMBED_DIM)
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model = model.to(device)
+    
+    # DataLoader 생성
+    dataloader = DataLoader(
+        dataset, 
+        batch_size=BATCH_SIZE, 
+        shuffle=True,
+        num_workers=2
+    )
+    
+    # Optimizer 설정
+    optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE)
+    
+    # 학습 루프
+    model.train()
+    for epoch in range(NUM_EPOCHS):
+        total_loss = 0
+        for batch_idx, (center, pos, negs) in enumerate(dataloader):
+            # 데이터를 device로 이동
+            center = center.to(device)
+            pos = pos.to(device)
+            negs = negs.to(device)
+            
+            # Forward pass
+            loss = model(center, pos, negs)
+            
+            # Backward pass
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            
+            total_loss += loss.item()
+            
+            # 주기적으로 손실 출력
+            if (batch_idx + 1) % 100 == 0:
+                avg_loss = total_loss / (batch_idx + 1)
+                print(f'Epoch [{epoch+1}/{NUM_EPOCHS}], '
+                      f'Batch [{batch_idx+1}/{len(dataloader)}], '
+                      f'Loss: {avg_loss:.4f}')
+        
+        # 에폭별 평균 손실
+        avg_epoch_loss = total_loss / len(dataloader)
+        print(f'Epoch [{epoch+1}/{NUM_EPOCHS}] completed. '
+              f'Average Loss: {avg_epoch_loss:.4f}\n')
+    
+    return model
+```
+
+학습 함수는 크게 세 부분으로 구성됩니다.
+
+**초기화 단계**에서는 모델과 학습에 필요한 구성 요소들을 준비합니다. `EMBED_DIM`은 단어 벡터의 차원을 결정하며, 일반적으로 50에서 300 사이의 값을 사용합니다. `BATCH_SIZE`는 한 번에 처리할 샘플의 개수로, GPU 메모리에 따라 조정합니다. `LEARNING_RATE`는 경사 하강법의 스텝 크기를 결정하며, Adam optimizer의 경우 0.001 정도가 적절합니다.
+
+모델을 생성한 후에는 사용 가능한 디바이스(GPU 또는 CPU)로 이동시킵니다. GPU가 있다면 `cuda`를, 없다면 `cpu`를 사용합니다. DataLoader는 데이터셋을 배치 단위로 나누고, `shuffle=True`로 설정하여 매 에폭마다 데이터 순서를 섞습니다. 이는 학습의 일반화 성능을 높이는 데 도움이 됩니다.
+
+Optimizer로는 Adam을 사용합니다. Adam은 각 매개변수에 대해 적응적 학습률을 사용하는 최적화 알고리즘으로, Word2vec과 같은 임베딩 학습에 효과적입니다.
+
+**학습 루프**는 이중 반복문으로 구성됩니다. 외부 루프는 에폭을 반복하고, 내부 루프는 배치를 반복합니다. 각 배치에 대해 다음 과정을 수행합니다.
+
+먼저 배치 데이터를 GPU로 이동시킵니다. 이는 `.to(device)` 메서드를 통해 이루어지며, 데이터가 GPU 메모리에 있어야 모델도 GPU에서 계산할 수 있습니다.
+
+Forward pass에서는 모델에 데이터를 입력하여 손실을 계산합니다. 앞서 구현한 `forward` 메서드가 호출되며, Negative Sampling 손실이 반환됩니다.
+
+Backward pass는 세 단계로 이루어집니다. 먼저 `optimizer.zero_grad()`로 이전 배치의 경사를 초기화합니다. PyTorch는 기본적으로 경사를 누적하므로, 매 배치마다 초기화하지 않으면 잘못된 경사가 계산됩니다. 다음으로 `loss.backward()`를 호출하여 역전파를 수행하고 모든 매개변수의 경사를 계산합니다. 마지막으로 `optimizer.step()`으로 계산된 경사를 사용하여 매개변수를 업데이트합니다.
+
+100개 배치마다 현재까지의 평균 손실을 출력하여 학습 진행 상황을 모니터링합니다. 손실이 지속적으로 감소한다면 모델이 잘 학습되고 있다는 신호입니다.
+
+각 에폭이 끝날 때마다 전체 평균 손실을 출력합니다. 일반적으로 에폭이 진행됨에 따라 손실이 감소하며, 특정 시점 이후로는 수렴하여 더 이상 크게 변하지 않습니다.
+
+학습이 완료되면 모델을 반환합니다. 학습된 모델에서 단어 벡터를 추출하려면 다음과 같이 할 수 있습니다.
+
+```python
+# 학습 실행
+trained_model = train()
+
+# 최종 단어 벡터 추출 (두 임베딩의 평균)
+final_embeddings = (
+    trained_model.in_embed.weight.data + 
+    trained_model.out_embed.weight.data
+) / 2
+
+# 특정 단어의 벡터 확인
+word = "banking"
+word_idx = word2idx[word]
+word_vector = final_embeddings[word_idx]
+print(f"Vector for '{word}': {word_vector}")
+```
+
+앞서 설명한 대로, Word2vec은 각 단어에 대해 두 개의 벡터(중심 단어 벡터와 문맥 단어 벡터)를 유지하므로, 최종 단어 벡터는 이 둘의 평균으로 계산하는 것이 일반적입니다. 이렇게 얻어진 벡터는 단어의 의미를 밀집 벡터 형태로 표현하며, 유사한 의미를 가진 단어들은 벡터 공간에서 가까이 위치하게 됩니다.

@@ -334,7 +334,7 @@ $$\text{ReLU}(x) = [0, 0, 0, 1, 2]$$
 
 ### Backward Pass
 
-[[Chain Rule]]에 의해:
+[[Chain rule]]에 의해:
 
 $$\frac{\partial L}{\partial x_i} = \frac{\partial L}{\partial \text{ReLU}(x_i)} \cdot \frac{\partial \text{ReLU}(x_i)}{\partial x_i}$$
 

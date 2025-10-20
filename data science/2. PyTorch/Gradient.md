@@ -142,7 +142,7 @@ with torch.no_grad():
 
 ### 자동 미분 (Automatic Differentiation)
 
-PyTorch의 [[Autograd]]가 사용하는 방법입니다. 계산 그래프를 구성하고 [[Chain Rule]]을 자동으로 적용하여 효율적으로 그래디언트를 계산합니다. 이것이 [[Backpropagation]]의 핵심 기술입니다.
+PyTorch의 [[Autograd]]가 사용하는 방법입니다. 계산 그래프를 구성하고 [[Chain rule]]을 자동으로 적용하여 효율적으로 그래디언트를 계산합니다. 이것이 [[Backpropagation]]의 핵심 기술입니다.
 
 ```python
 # PyTorch가 모든 것을 자동으로 처리
@@ -223,7 +223,7 @@ print(x.grad)  # tensor([4.])
 
 ### 그래디언트 소실 (Vanishing Gradient)
 
-[[Backpropagation]]을 통해 그래디언트를 전파할 때, 여러 층을 거치면서 [[Chain Rule]]에 의해 작은 값들이 계속 곱해지면 그래디언트가 0에 가까워집니다. 예를 들어 각 층에서 0.5가 곱해진다면, 10개 층을 거치면 $0.5^{10} \approx 0.001$이 되어 거의 0입니다. 결과적으로 초기 층의 파라미터는 거의 업데이트되지 않아 학습이 제대로 이루어지지 않습니다.
+[[Backpropagation]]을 통해 그래디언트를 전파할 때, 여러 층을 거치면서 [[Chain rule]]에 의해 작은 값들이 계속 곱해지면 그래디언트가 0에 가까워집니다. 예를 들어 각 층에서 0.5가 곱해진다면, 10개 층을 거치면 $0.5^{10} \approx 0.001$이 되어 거의 0입니다. 결과적으로 초기 층의 파라미터는 거의 업데이트되지 않아 학습이 제대로 이루어지지 않습니다.
 
 **해결 방법:**
 
@@ -292,6 +292,6 @@ scheduler = torch.optim.lr_scheduler.StepLR(
 
 - [[Loss Function]] - 그래디언트 계산의 대상
 - [[Backpropagation]] - 그래디언트를 효율적으로 계산하는 알고리즘
-- [[Chain Rule]] - 역전파의 수학적 기초
+- [[Chain rule]] - 역전파의 수학적 기초
 - [[Autograd]] - PyTorch의 자동 미분 시스템
 - [[Optimizer(Data Science)]] - 그래디언트를 사용한 파라미터 업데이트 알고리즘

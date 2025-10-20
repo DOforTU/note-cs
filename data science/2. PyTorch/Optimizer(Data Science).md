@@ -129,7 +129,7 @@ for epoch in range(num_epochs):
 
 ---
 
-## SGD with Momentum
+## [[SGDMomentum]]
 
 단순 SGD의 문제는 gradient가 작은 방향으로는 느리게 이동하고, 큰 방향으로는 진동한다는 것입니다.
 
@@ -153,7 +153,7 @@ $$v_t = \beta v_{t-1} + \nabla_\theta L$$ $$\theta = \theta - \eta \cdot v_t$$
 
 지그재그로 진동하는 경우:
 
-- 단순 SGD: 계속 진동
+- 단순 [[SGD]]: 계속 진동
 - Momentum: 진동하는 방향은 상쇄되고, 일관된 방향만 가속
 
 **PyTorch 구현:**
@@ -186,7 +186,7 @@ Gradient가 줄어들어도 속도 덕분에 더 큰 step을 취합니다.
 
 ---
 
-## RMSprop
+## [[RMSprop]]
 
 Gradient의 크기가 차원마다 크게 다를 때 문제가 발생합니다. 어떤 파라미터는 gradient가 크고, 어떤 파라미터는 작습니다.
 
@@ -247,7 +247,7 @@ Gradient가 증가했지만 업데이트 크기는 오히려 감소했습니다.
 
 ---
 
-## Adam (Adaptive Moment Estimation)
+## [[Adam]] (Adaptive Moment Estimation)
 
 **Adam**은 현재 가장 널리 사용되는 optimizer입니다. Momentum과 RMSprop의 장점을 결합했습니다.
 
